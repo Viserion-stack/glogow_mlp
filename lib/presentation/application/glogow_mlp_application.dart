@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:glogow_mlp/presentation/landing/landing_screen.dart';
 import 'package:glogow_mlp/presentation/screens/home/home_screen.dart';
 
 class GlogowMlpApplication extends StatelessWidget {
@@ -7,7 +8,7 @@ class GlogowMlpApplication extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
-      home: HomeScreen(),
+      home: LandingScreen(),
     );
   }
 }
