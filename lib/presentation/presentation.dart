@@ -13,7 +13,7 @@ Future<void> mainApplication() async {
 
   runZonedGuarded(() {
     runApp(
-      GlogowMlpApplication(),
+      const GlogowMlpApplication(),
     );
   }, (error, stackTrace) {
     print('runZonedGuarded fail');

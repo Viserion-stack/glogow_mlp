@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:glogow_mlp/presentation/common/auth_bloc/auth_bloc.dart';
 
 class LandingScreen extends StatelessWidget {
   const LandingScreen({Key? key}) : super(key: key);
+
+  static const String routeName = '/landing';
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +18,13 @@ class LandingScreen extends StatelessWidget {
             const SizedBox(height: 16),
             _LandingButton(onTap: () {}, title: 'Zarejestruj'),
             const SizedBox(height: 16),
-            _LandingButton(onTap: () {}, title: 'Gość'),
+            _LandingButton(
+                onTap: () {
+                  context.read<AuthBloc>().add(
+                        SignInAnonimouslyRequestedEvent(),
+                      );
+                },
+                title: 'Gość'),
           ],
         ),
       ),

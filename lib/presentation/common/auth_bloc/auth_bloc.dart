@@ -1,6 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:glogow_mlp/domain/data_source/auth_data_source/auth_data_source.dart';
 import 'package:glogow_mlp/domain/model/user.dart' as user;
 import 'package:firebase_auth/firebase_auth.dart' as fbAuth;
 import 'package:glogow_mlp/domain/service/user_service.dart';
@@ -9,12 +10,12 @@ part 'auth_event.dart';
 part 'auth_state.dart';
 
 class AuthBloc extends Bloc<AuthEvent, AuthState> {
-  final UserService userService;
-  AuthBloc({required this.userService}) : super(AuthState.initial()) {
+  final AuthRepository authRepository;
+  AuthBloc({required this.authRepository}) : super(AuthState.initial()) {
     on<AuthEvent>((event, emit) {});
     on<SignoutRequestedEvent>(
       (event, emit) async {
-        await userService.signOut();
+        await authRepository.signOut();
         emit(
           state.copyWith(
             authStatus: AuthStatus.unauthenticated,
@@ -26,7 +27,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     on<SignInRequestedEvent>(
       (event, emit) async {
         var user;
-        await userService.signIn(
+        await authRepository.signIn(
           email: event.email,
           password: event.password,
         );
@@ -46,7 +47,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     on<SignUpRequestedEvent>(
       (event, emit) async {
         var user;
-        await userService.signUp(
+        await authRepository.signUp(
           email: event.email,
           password: event.password,
           name: event.name,
@@ -68,7 +69,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       (event, emit) async {
         var user;
         user = user.User.initia();
-        await userService.signInAnonymously();
+        await authRepository.signInAnonymously();
         emit(
           state.copyWith(
             authStatus: AuthStatus.authenticated,
