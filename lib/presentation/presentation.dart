@@ -16,6 +16,6 @@ Future<void> mainApplication() async {
       const GlogowMlpApplication(),
     );
   }, (error, stackTrace) {
-    print('runZonedGuarded fail');
+    debugPrint('runZonedGuarded fail');
   });
 }

@@ -37,30 +37,29 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyAtHG-EfMHZOHKCxNqmxzABUYgop-VKz0Q',
-    appId: '1:975773789579:web:537fa52c13b148ec1a938e',
-    messagingSenderId: '975773789579',
-    projectId: 'lockteclone',
-    authDomain: 'lockteclone.firebaseapp.com',
-    storageBucket: 'lockteclone.appspot.com',
+    apiKey: 'AIzaSyC1tCjv10wBRFFpAjaBPTIGIEzWG8zwGyQ',
+    appId: '1:1069158408953:web:b71dc526cbda801abaf828',
+    messagingSenderId: '1069158408953',
+    projectId: 'glogow-malopolski',
+    authDomain: 'glogow-malopolski.firebaseapp.com',
+    storageBucket: 'glogow-malopolski.appspot.com',
   );
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyCNfdgL-65LYrDhQN3J7dsYMw7oOg-XIpc',
-    appId: '1:975773789579:android:36f6875d7101965c1a938e',
-    messagingSenderId: '975773789579',
-    projectId: 'lockteclone',
-    storageBucket: 'lockteclone.appspot.com',
+    apiKey: 'AIzaSyB4xo_7TrgkxC_05KwbF81Xjo7q5jsmv0I',
+    appId: '1:1069158408953:android:db2e859efacf2de9baf828',
+    messagingSenderId: '1069158408953',
+    projectId: 'glogow-malopolski',
+    storageBucket: 'glogow-malopolski.appspot.com',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyAtMI2k-nMgk0WPXtVp6RpEgbhS79XyTl4',
-    appId: '1:975773789579:ios:130b4a82d4db85431a938e',
-    messagingSenderId: '975773789579',
-    projectId: 'lockteclone',
-    storageBucket: 'lockteclone.appspot.com',
-    androidClientId: '975773789579-stbq3o3gu85g6i8claqirgfrku9bscb1.apps.googleusercontent.com',
-    iosClientId: '975773789579-mrhmubfpu7md9mvdhqh1n01egfa2uc88.apps.googleusercontent.com',
-    iosBundleId: 'com.example.app',
+    apiKey: 'AIzaSyCHFy2KKUHYKumKPCB0xIBed8giDVVBFQI',
+    appId: '1:1069158408953:ios:de5bd9b40d296d9fbaf828',
+    messagingSenderId: '1069158408953',
+    projectId: 'glogow-malopolski',
+    storageBucket: 'glogow-malopolski.appspot.com',
+    iosClientId: '1069158408953-7ovjq2c6o5foesr41rivfhq7l4r91le0.apps.googleusercontent.com',
+    iosBundleId: 'com.example.glogowMlp',
   );
 }

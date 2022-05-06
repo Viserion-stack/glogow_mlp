@@ -1,11 +1,11 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:glogow_mlp/domain/data_source/auth_data_source/auth_data_source.dart';
-import 'package:glogow_mlp/domain/model/user.dart';
 
 class UserService {
   final AuthRepository authRepository;
 
-  UserService(this.authRepository,);
+  UserService(
+    this.authRepository,
+  );
 
   Future<void> signIn({
     required String email,

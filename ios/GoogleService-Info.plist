@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>1069158408953-7ovjq2c6o5foesr41rivfhq7l4r91le0.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.1069158408953-7ovjq2c6o5foesr41rivfhq7l4r91le0</string>
+	<key>API_KEY</key>
+	<string>AIzaSyCHFy2KKUHYKumKPCB0xIBed8giDVVBFQI</string>
+	<key>GCM_SENDER_ID</key>
+	<string>1069158408953</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.example.glogowMlp</string>
+	<key>PROJECT_ID</key>
+	<string>glogow-malopolski</string>
+	<key>STORAGE_BUCKET</key>
+	<string>glogow-malopolski.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:1069158408953:ios:de5bd9b40d296d9fbaf828</string>
+</dict>
+</plist>

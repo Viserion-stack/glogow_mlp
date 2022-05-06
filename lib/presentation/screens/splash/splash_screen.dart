@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:glogow_mlp/presentation/common/auth_bloc/auth_bloc.dart';
 import 'package:glogow_mlp/presentation/landing/landing_screen.dart';
-import 'package:glogow_mlp/presentation/screens/home/home_screen.dart';
 import 'package:glogow_mlp/presentation/screens/login/login_screen.dart';
 
 class SplashScreen extends StatelessWidget {

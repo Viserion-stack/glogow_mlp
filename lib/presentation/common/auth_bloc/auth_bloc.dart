@@ -1,10 +1,11 @@
+// ignore_for_file: prefer_typing_uninitialized_variables
+
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:glogow_mlp/domain/data_source/auth_data_source/auth_data_source.dart';
-import 'package:glogow_mlp/domain/model/user.dart' as user;
+// ignore: library_prefixes
 import 'package:firebase_auth/firebase_auth.dart' as fbAuth;
-import 'package:glogow_mlp/domain/service/user_service.dart';
 
 part 'auth_event.dart';
 part 'auth_state.dart';

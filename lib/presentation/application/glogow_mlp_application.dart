@@ -3,13 +3,11 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:glogow_mlp/domain/data_source/auth_data_source/auth_data_source.dart';
-import 'package:glogow_mlp/domain/service/user_service.dart';
 import 'package:glogow_mlp/presentation/common/auth_bloc/auth_bloc.dart';
 import 'package:glogow_mlp/presentation/landing/landing_screen.dart';
-import 'package:glogow_mlp/presentation/screens/home/home_screen.dart';
 import 'package:glogow_mlp/presentation/screens/login/login_screen.dart';
-import 'package:glogow_mlp/presentation/screens/splash/splash_screen.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+
+import '../screens/auth_gate/auth_gate.dart';
 
 class GlogowMlpApplication extends StatelessWidget {
   const GlogowMlpApplication({Key? key}) : super(key: key);
@@ -36,11 +34,11 @@ class GlogowMlpApplication extends StatelessWidget {
         child: MaterialApp(
           debugShowCheckedModeBanner: false,
           routes: {
-            HomeScreen.routeName: (context) => const HomeScreen(),
+            //HomeScreen.routeName: (context) => HomeScreen(),
             LoginScreen.routeName: (context) => const LoginScreen(),
             LandingScreen.routeName: (context) => const LandingScreen(),
           },
-          home: SplashScreen(),
+          home: const AuthGate(),
         ),
       ),
     );
