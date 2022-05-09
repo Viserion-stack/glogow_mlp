@@ -1,45 +1,35 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:glogow_mlp/domain/data_source/auth_data_source/auth_data_source.dart';
-import 'package:glogow_mlp/presentation/common/auth_bloc/auth_bloc.dart';
 import 'package:glogow_mlp/presentation/landing/landing_screen.dart';
+import 'package:glogow_mlp/presentation/screens/auth_gate/auth_gate.dart';
 import 'package:glogow_mlp/presentation/screens/login/login_screen.dart';
+import 'package:provider/provider.dart';
 
-import '../screens/auth_gate/auth_gate.dart';
+import '../../foundation/theme.dart';
+import '../screens/splash/splash_screen.dart';
 
 class GlogowMlpApplication extends StatelessWidget {
   const GlogowMlpApplication({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return MultiRepositoryProvider(
+    return MultiProvider(
       providers: [
-        RepositoryProvider<AuthRepository>(
-          create: (context) => AuthRepository(
-            firebaseAuth: FirebaseAuth.instance,
-            firebaseFirestore: FirebaseFirestore.instance,
-          ),
-        ),
+        ChangeNotifierProvider(create: (ctx) => ThemeNotifier()),
       ],
-      child: MultiBlocProvider(
-        providers: [
-          BlocProvider<AuthBloc>(
-            create: (context) => AuthBloc(
-              authRepository: context.read<AuthRepository>(),
-            ),
-          ),
-        ],
-        child: MaterialApp(
-          debugShowCheckedModeBanner: false,
-          routes: {
-            //HomeScreen.routeName: (context) => HomeScreen(),
-            LoginScreen.routeName: (context) => const LoginScreen(),
-            LandingScreen.routeName: (context) => const LandingScreen(),
-          },
-          home: const AuthGate(),
-        ),
+      child: Consumer<ThemeNotifier>(
+        builder: (context, notifier, _) {
+          return MaterialApp(
+              theme: MyAppTheme.myThemes(notifier.isDark, context),
+              debugShowCheckedModeBanner: false,
+              routes: {
+                //HomeScreen.routeName: (context) => HomeScreen(),
+                LoginScreen.routeName: (context) => const LoginScreen(),
+                LandingScreen.routeName: (context) => const LandingScreen(),
+                AuthGate.routeName: (context) => const AuthGate(),
+              },
+              home: const SplashScreen() //AuthGate(),
+              );
+        },
       ),
     );
   }
