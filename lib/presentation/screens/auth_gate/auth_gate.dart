@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutterfire_ui/auth.dart';
+import 'package:glogow_mlp/presentation/screens/home/home_screen.dart';
 import 'package:glogow_mlp/presentation/screens/home/start_screen.dart';
 
 class AuthGate extends StatelessWidget {
@@ -44,7 +45,7 @@ class AuthGate extends StatelessWidget {
           );
         }
         //return HomeScreen();
-        return StartScreen(user: snapshot.data!);
+        return HomeScreen();
       },
     );
   }

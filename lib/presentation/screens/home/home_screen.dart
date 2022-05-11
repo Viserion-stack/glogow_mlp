@@ -1,8 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:glogow_mlp/domain/model/user.dart';
+import 'package:glogow_mlp/presentation/screens/home/start_screen.dart';
+import 'package:glogow_mlp/presentation/screens/home/widgets/home_appbar.dart';
 
 class HomeScreen extends StatefulWidget {
+  const HomeScreen({
+    //required this.user,
+    Key? key,
+  }) : super(key: key);
+
+  //final User user;
   static const routeName = 'home-screen';
-  const HomeScreen({Key? key}) : super(key: key);
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
@@ -37,41 +45,29 @@ class _HomeScreenState extends State<HomeScreen>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          flexibleSpace: Container(
-            decoration: const BoxDecoration(color: Colors.black),
+      backgroundColor: const Color(0xFFF2F2F2),
+      appBar: HomeAppbar(
+        controller: controller,
+        tabTitle: tabTitle,
+      ),
+      body: TabBarView(
+        controller: controller,
+        children: [
+          const StartScreen(),
+          Center(
+            child: Text('Wydarzenia'),
           ),
-          title: Text(tabTitle[controller.index]),
-          bottom: TabBar(
-              controller: controller,
-              tabs: const [
-                Tab(text: 'Start'),
-                Tab(text: 'Wydarzenia'),
-                Tab(text: 'O Gminie'),
-                Tab(text: 'Kontakt'),
-                Tab(text: 'E-Urząd'),
-              ],
-              labelPadding: const EdgeInsets.all(0)),
-        ),
-        body: TabBarView(
-          controller: controller,
-          children: const [
-            Center(
-              child: Text('Start'),
-            ),
-            Center(
-              child: Text('Wydarzenia'),
-            ),
-            Center(
-              child: Text('O Gminie'),
-            ),
-            Center(
-              child: Text('Kontakt'),
-            ),
-            Center(
-              child: Text('E-Urząd'),
-            ),
-          ],
-        ));
+          Center(
+            child: Text('O Gminie'),
+          ),
+          Center(
+            child: Text('Kontakt'),
+          ),
+          Center(
+            child: Text('E-Urząd'),
+          ),
+        ],
+      ),
+    );
   }
 }
