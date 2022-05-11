@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:glogow_mlp/presentation/screens/home/widgets/home_appbar.dart';
 
 class HomeScreen extends StatefulWidget {
   static const routeName = 'home-screen';
@@ -37,41 +38,38 @@ class _HomeScreenState extends State<HomeScreen>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          flexibleSpace: Container(
-            decoration: BoxDecoration(color: Colors.black),
+      backgroundColor: const Color(0xFFF2F2F2),
+      appBar: HomeAppbar(
+        controller: controller,
+        tabTitle: tabTitle,
+      ),
+      body: TabBarView(
+        controller: controller,
+        children: [
+          Center(
+            child: Text('Start'),
           ),
-          title: Text(tabTitle[controller.index]),
-          bottom: TabBar(
-              controller: controller,
-              tabs: const [
-                Tab(text: 'Start'),
-                Tab(text: 'Wydarzenia'),
-                Tab(text: 'O Gminie'),
-                Tab(text: 'Kontakt'),
-                Tab(text: 'E-Urząd'),
-              ],
-              labelPadding: const EdgeInsets.all(0)),
-        ),
-        body: TabBarView(
-          controller: controller,
-          children: const [
-            Center(
-              child: Text('Start'),
+          Center(
+            child: Text('Wydarzenia'),
+          ),
+          Center(
+            child: Text('O Gminie'),
+          ),
+          Center(
+            child: Container(
+              height: 100,
+              width: 100,
+              child: Image.network(
+                'https://www.glogow-mlp.pl/images/2022/MAJ_2022/2022.05.05_Turniej_wiedzy_po%C5%BCarniczej_etap_gminny/zawody_po%C5%BCarnicze.png',
+                fit: BoxFit.contain,
+              ),
             ),
-            Center(
-              child: Text('Wydarzenia'),
-            ),
-            Center(
-              child: Text('O Gminie'),
-            ),
-            Center(
-              child: Text('Kontakt'),
-            ),
-            Center(
-              child: Text('E-Urząd'),
-            ),
-          ],
-        ));
+          ),
+          Center(
+            child: Text('E-Urząd'),
+          ),
+        ],
+      ),
+    );
   }
 }

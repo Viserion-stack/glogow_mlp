@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shimmer/shimmer.dart';
 
-import '../../../foundation/theme.dart';
+import '../../application/theme.dart';
 
 class StartScreen extends StatefulWidget {
   final User user;
