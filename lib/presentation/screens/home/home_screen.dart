@@ -39,7 +39,7 @@ class _HomeScreenState extends State<HomeScreen>
     return Scaffold(
         appBar: AppBar(
           flexibleSpace: Container(
-            decoration: BoxDecoration(color: Colors.black),
+            decoration: const BoxDecoration(color: Colors.black),
           ),
           title: Text(tabTitle[controller.index]),
           bottom: TabBar(

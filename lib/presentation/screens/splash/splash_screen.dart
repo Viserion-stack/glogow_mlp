@@ -137,7 +137,7 @@ class _SplashScreenState extends State<SplashScreen>
                         top: AppInsets.xMedium,
                         bottom: AppInsets.xMedium),
                     child: Text(
-                      'Przejdz dalej',
+                      'Przejdź dalej',
                       style: TextStyle(
                         color: Colors.white,
                         fontSize: AppInsets.xMedium,
