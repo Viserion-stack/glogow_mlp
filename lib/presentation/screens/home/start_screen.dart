@@ -2,19 +2,26 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:glogow_mlp/foundation/article.dart';
+import 'package:glogow_mlp/presentation/application/theme.dart';
 import 'package:glogow_mlp/presentation/screens/article_detail_screen/article_detail_screen.dart';
+import 'package:glogow_mlp/presentation/screens/home/widgets/home_appbar.dart';
 import 'package:provider/provider.dart';
 import 'package:shimmer/shimmer.dart';
 
+
+import '../../application/theme.dart';
+
 import '../../../foundation/articles.dart';
-import '../../../foundation/theme.dart';
+
+
 
 class StartScreen extends StatefulWidget {
-  final User user;
   const StartScreen({
     Key? key,
-    required this.user,
+    // required this.user,
   }) : super(key: key);
+
+  // final User user;
 
   static const String routeName = '/home';
 
@@ -64,16 +71,6 @@ class _StartScreenState extends State<StartScreen>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        leading: const BackButton(),
-        actions: [
-          IconButton(
-              onPressed: () {
-                FirebaseAuth.instance.signOut();
-              },
-              icon: const Icon(Icons.logout_outlined))
-        ],
-      ),
       body: Center(
         child: StreamBuilder(
           stream: FirebaseFirestore.instance.collection('post').snapshots(),
@@ -89,15 +86,17 @@ class _StartScreenState extends State<StartScreen>
             final documents = snapshot.data!.docs;
 
             for (var element in documents) {
-              _articles.add(Article(
-                addedAt: element['addedAt'].toDate(),
-                articleUrl: element['articleUrl'],
-                category: element['category'],
-                description: element['description'],
-                id: element['id'],
-                imageUrl: element['imageUrl'],
-                title: element['title'],
-              ));
+              _articles.add(
+                Article(
+                  addedAt: element['addedAt'].toDate(),
+                  articleUrl: element['articleUrl'],
+                  category: element['category'],
+                  description: element['description'],
+                  id: element['id'],
+                  imageUrl: element['imageUrl'],
+                  title: element['title'],
+                ),
+              );
             }
             Provider.of<Articles>(context, listen: false)
                 .addArticles(_articles);
@@ -105,27 +104,28 @@ class _StartScreenState extends State<StartScreen>
             return Column(
               children: [
                 Card(
-                  child:
-                      Consumer<ThemeNotifier>(builder: (context, notifier, _) {
-                    return SwitchListTile.adaptive(
-                      secondary: notifier.isDark
-                          ? Icon(
-                              Icons.dark_mode,
-                              color: Colors.amber.shade700,
-                            )
-                          : Icon(
-                              Icons.light_mode,
-                              color: Colors.amber.shade700,
-                            ),
-                      title: notifier.isDark
-                          ? const Text('Dark mode')
-                          : const Text('Light mode'),
-                      value: notifier.isDark,
-                      onChanged: (value) {
-                        notifier.toogleTheme(value);
-                      },
-                    );
-                  }),
+                  child: Consumer<ThemeNotifier>(
+                    builder: (context, notifier, _) {
+                      return SwitchListTile.adaptive(
+                        secondary: notifier.isDark
+                            ? Icon(
+                                Icons.dark_mode,
+                                color: Colors.amber.shade700,
+                              )
+                            : Icon(
+                                Icons.light_mode,
+                                color: Colors.amber.shade700,
+                              ),
+                        title: notifier.isDark
+                            ? const Text('Dark mode')
+                            : const Text('Light mode'),
+                        value: notifier.isDark,
+                        onChanged: (value) {
+                          notifier.toogleTheme(value);
+                        },
+                      );
+                    },
+                  ),
                 ),
                 Expanded(
                   child: ListView.builder(
@@ -195,7 +195,10 @@ class ShimmerLoading extends StatelessWidget {
       itemCount: 10,
       itemBuilder: (context, index) {
         return ListTile(
-          leading: const ShimmerWidget.rectangular(width: 80, height: 64),
+          leading: const ShimmerWidget.rectangular(
+            width: 80,
+            height: 64,
+          ),
           title: Align(
             alignment: Alignment.centerLeft,
             child: ShimmerWidget.rectangular(
@@ -229,13 +232,20 @@ class ShimmerWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Shimmer.fromColors(
-      baseColor: const Color.fromARGB(255, 219, 215, 215),
+      baseColor: const Color.fromARGB(
+        255,
+        219,
+        215,
+        215,
+      ),
       highlightColor: Colors.grey[100]!,
       child: Container(
         width: width,
         height: height,
-        decoration: ShapeDecoration(shape: shapeBorder, color: Colors.grey),
-        //color: Colors.grey,
+        decoration: ShapeDecoration(
+          shape: shapeBorder,
+          color: Colors.grey,
+        ),
       ),
     );
   }

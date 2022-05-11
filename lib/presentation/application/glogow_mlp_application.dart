@@ -6,7 +6,7 @@ import 'package:glogow_mlp/presentation/screens/auth_gate/auth_gate.dart';
 import 'package:glogow_mlp/presentation/screens/login/login_screen.dart';
 import 'package:provider/provider.dart';
 
-import '../../foundation/theme.dart';
+import 'theme.dart';
 import '../screens/splash/splash_screen.dart';
 
 class GlogowMlpApplication extends StatelessWidget {

@@ -13,13 +13,17 @@ Future<void> mainApplication() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
 
-  runZonedGuarded(() {
-    runApp(
-      const GlogowMlpApplication(),
-    );
-  }, (error, stackTrace) {
-    debugPrint('runZonedGuarded fail');
-  });
+  runZonedGuarded(
+    () {
+      HttpOverrides.global = MyHttpOverrides();
+      runApp(
+        const GlogowMlpApplication(),
+      );
+    },
+    (error, stackTrace) {
+      debugPrint('runZonedGuarded fail');
+    },
+  );
 }
 
 class MyHttpOverrides extends HttpOverrides {
