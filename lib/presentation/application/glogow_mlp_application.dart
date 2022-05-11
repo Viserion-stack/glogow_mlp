@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:glogow_mlp/foundation/articles.dart';
 import 'package:glogow_mlp/presentation/landing/landing_screen.dart';
+import 'package:glogow_mlp/presentation/screens/article_detail_screen/article_detail_screen.dart';
 import 'package:glogow_mlp/presentation/screens/auth_gate/auth_gate.dart';
 import 'package:glogow_mlp/presentation/screens/login/login_screen.dart';
 import 'package:provider/provider.dart';
@@ -15,6 +17,9 @@ class GlogowMlpApplication extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (ctx) => ThemeNotifier()),
+        ChangeNotifierProvider.value(
+          value: Articles(),
+        ),
       ],
       child: Consumer<ThemeNotifier>(
         builder: (context, notifier, _) {
@@ -26,6 +31,8 @@ class GlogowMlpApplication extends StatelessWidget {
                 LoginScreen.routeName: (context) => const LoginScreen(),
                 LandingScreen.routeName: (context) => const LandingScreen(),
                 AuthGate.routeName: (context) => const AuthGate(),
+                ArticleDetailScreen.routeName: (context) =>
+                    const ArticleDetailScreen(),
               },
               home: const SplashScreen() //AuthGate(),
               );

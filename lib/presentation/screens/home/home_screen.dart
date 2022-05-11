@@ -38,6 +38,7 @@ class _HomeScreenState extends State<HomeScreen>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+
       backgroundColor: const Color(0xFFF2F2F2),
       appBar: HomeAppbar(
         controller: controller,
@@ -48,6 +49,7 @@ class _HomeScreenState extends State<HomeScreen>
         children: [
           Center(
             child: Text('Start'),
+
           ),
           Center(
             child: Text('Wydarzenia'),

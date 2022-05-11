@@ -1,10 +1,17 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:glogow_mlp/foundation/article.dart';
+import 'package:glogow_mlp/presentation/screens/article_detail_screen/article_detail_screen.dart';
 import 'package:provider/provider.dart';
 import 'package:shimmer/shimmer.dart';
 
+
 import '../../application/theme.dart';
+
+import '../../../foundation/articles.dart';
+
+
 
 class StartScreen extends StatefulWidget {
   final User user;
@@ -73,7 +80,7 @@ class _StartScreenState extends State<StartScreen>
       ),
       body: Center(
         child: StreamBuilder(
-          stream: FirebaseFirestore.instance.collection('users').snapshots(),
+          stream: FirebaseFirestore.instance.collection('post').snapshots(),
           builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
               return const Center(
@@ -81,8 +88,24 @@ class _StartScreenState extends State<StartScreen>
                       ShimmerLoading() //CircularProgressIndicator.adaptive(),
                   );
             }
+            List<Article> _articles = [];
 
             final documents = snapshot.data!.docs;
+
+            for (var element in documents) {
+              _articles.add(Article(
+                addedAt: element['addedAt'].toDate(),
+                articleUrl: element['articleUrl'],
+                category: element['category'],
+                description: element['description'],
+                id: element['id'],
+                imageUrl: element['imageUrl'],
+                title: element['title'],
+              ));
+            }
+            Provider.of<Articles>(context, listen: false)
+                .addArticles(_articles);
+
             return Column(
               children: [
                 Card(
@@ -118,11 +141,35 @@ class _StartScreenState extends State<StartScreen>
                     ) {
                       return FadeTransition(
                         opacity: _animation,
-                        child: ListTile(
-                          leading: CircleAvatar(
-                              radius: 25,
-                              child: Text(documents[index]['name'])),
-                          subtitle: Text(documents[index]['description']),
+                        child: GestureDetector(
+                          onTap: () {
+                            Navigator.of(context).pushNamed(
+                                ArticleDetailScreen.routeName,
+                                arguments: documents[index]['id']);
+                          },
+                          child: ListTile(
+                            leading: FittedBox(
+                              fit: BoxFit.fitWidth,
+                              child: Hero(
+                                tag: documents[index]['id'],
+                                child: FadeInImage(
+                                  image: NetworkImage(
+                                      documents[index]['imageUrl']),
+                                  placeholder:
+                                      const AssetImage('assets/placeholder.png')
+                                          as ImageProvider,
+                                ),
+                              ),
+                            ),
+                            title: Text(
+                              documents[index]['title'],
+                              maxLines: 1,
+                            ),
+                            subtitle: Text(
+                              documents[index]['description'],
+                              maxLines: 2,
+                            ),
+                          ),
                         ),
                       );
                     },
@@ -145,11 +192,14 @@ class ShimmerLoading extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
+    return ListView.separated(
+      separatorBuilder: (context, index) {
+        return Divider();
+      },
       itemCount: 10,
       itemBuilder: (context, index) {
         return ListTile(
-          leading: const ShimmerWidget.circular(width: 64, height: 64),
+          leading: const ShimmerWidget.rectangular(width: 80, height: 64),
           title: Align(
             alignment: Alignment.centerLeft,
             child: ShimmerWidget.rectangular(
