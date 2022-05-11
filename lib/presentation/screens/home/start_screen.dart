@@ -8,7 +8,12 @@ import 'package:glogow_mlp/presentation/screens/home/widgets/home_appbar.dart';
 import 'package:provider/provider.dart';
 import 'package:shimmer/shimmer.dart';
 
+
+import '../../application/theme.dart';
+
 import '../../../foundation/articles.dart';
+
+
 
 class StartScreen extends StatefulWidget {
   const StartScreen({

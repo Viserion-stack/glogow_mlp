@@ -5,11 +5,9 @@ import 'package:glogow_mlp/presentation/screens/home/widgets/home_appbar.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({
-    //required this.user,
     Key? key,
   }) : super(key: key);
 
-  //final User user;
   static const routeName = 'home-screen';
 
   @override
