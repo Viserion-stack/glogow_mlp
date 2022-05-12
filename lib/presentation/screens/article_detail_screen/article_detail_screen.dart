@@ -50,7 +50,7 @@ class ArticleDetailScreen extends StatelessWidget {
                     loadedArticle.title,
                     textAlign: TextAlign.start,
                     style: TextStyle(
-                      shadows: <Shadow>[
+                      shadows: const <Shadow>[
                         Shadow(
                             color: Colors.black,
                             offset: Offset(5, 5),

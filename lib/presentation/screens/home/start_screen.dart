@@ -1,19 +1,14 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:glogow_mlp/foundation/article.dart';
 import 'package:glogow_mlp/presentation/application/theme.dart';
 import 'package:glogow_mlp/presentation/screens/article_detail_screen/article_detail_screen.dart';
-import 'package:glogow_mlp/presentation/screens/home/widgets/home_appbar.dart';
 import 'package:provider/provider.dart';
 import 'package:shimmer/shimmer.dart';
-
 
 import '../../application/theme.dart';
 
 import '../../../foundation/articles.dart';
-
-
 
 class StartScreen extends StatefulWidget {
   const StartScreen({
@@ -50,7 +45,7 @@ class _StartScreenState extends State<StartScreen>
     //   curve: Curves.easeIn,
     // ));
     _controller = AnimationController(
-      duration: const Duration(seconds: 1),
+      duration: const Duration(seconds: 2),
       vsync: this,
     )..forward();
 
@@ -128,7 +123,14 @@ class _StartScreenState extends State<StartScreen>
                   ),
                 ),
                 Expanded(
-                  child: ListView.builder(
+                  child: ListView.separated(
+                    separatorBuilder: (context, index) {
+                      return const Divider(
+                        indent: 10,
+                        endIndent: 10,
+                        thickness: 2,
+                      );
+                    },
                     // key: _myListKey,
                     itemCount: documents.length,
                     itemBuilder: (
@@ -144,18 +146,13 @@ class _StartScreenState extends State<StartScreen>
                                 arguments: documents[index]['id']);
                           },
                           child: ListTile(
-                            leading: FittedBox(
-                              fit: BoxFit.fitWidth,
-                              child: Hero(
-                                tag: documents[index]['id'],
-                                child: FadeInImage(
+                            leading: Hero(
+                              tag: documents[index]['id'],
+                              child: FadeInImage(
                                   image: NetworkImage(
                                       documents[index]['imageUrl']),
-                                  placeholder:
-                                      const AssetImage('assets/placeholder.png')
-                                          as ImageProvider,
-                                ),
-                              ),
+                                  placeholder: const AssetImage(
+                                      'assets/placeholder.png')),
                             ),
                             title: Text(
                               documents[index]['title'],
@@ -188,10 +185,7 @@ class ShimmerLoading extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListView.separated(
-      separatorBuilder: (context, index) {
-        return Divider();
-      },
+    return ListView.builder(
       itemCount: 10,
       itemBuilder: (context, index) {
         return ListTile(

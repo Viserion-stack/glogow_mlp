@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:glogow_mlp/domain/model/user.dart';
 import 'package:glogow_mlp/presentation/screens/home/start_screen.dart';
 import 'package:glogow_mlp/presentation/screens/home/widgets/home_appbar.dart';
 
@@ -50,8 +49,8 @@ class _HomeScreenState extends State<HomeScreen>
       ),
       body: TabBarView(
         controller: controller,
-        children: [
-          const StartScreen(),
+        children: const [
+          StartScreen(),
           Center(
             child: Text('Wydarzenia'),
           ),
