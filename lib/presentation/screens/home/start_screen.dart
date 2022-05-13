@@ -1,3 +1,4 @@
+import 'package:carousel_pro_nullsafety/carousel_pro_nullsafety.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:glogow_mlp/foundation/article.dart';
@@ -29,6 +30,13 @@ class _StartScreenState extends State<StartScreen>
   late AnimationController _controller;
   //late Animation<Offset> _animation;
   late Animation<double> _animation;
+
+  final List<Widget> _carouselImages = [
+    // Image.network('assets/images/carousel1.png'),
+    // Image.network('assets/images/carousel2.jpeg'),
+    // Image.network('assets/images/carousel3.jpeg'),
+    // Image.network('assets/images/carousel4.png'),
+  ];
 
   @override
   void initState() {
@@ -96,32 +104,59 @@ class _StartScreenState extends State<StartScreen>
             Provider.of<Articles>(context, listen: false)
                 .addArticles(_articles);
 
+            for (int i = 0; i < 4; i++) {
+              _carouselImages.add(Image.network(documents[i]['imageUrl']));
+            }
+
             return Column(
               children: [
-                Card(
-                  child: Consumer<ThemeNotifier>(
-                    builder: (context, notifier, _) {
-                      return SwitchListTile.adaptive(
-                        secondary: notifier.isDark
-                            ? Icon(
-                                Icons.dark_mode,
-                                color: Colors.amber.shade700,
-                              )
-                            : Icon(
-                                Icons.light_mode,
-                                color: Colors.amber.shade700,
-                              ),
-                        title: notifier.isDark
-                            ? const Text('Dark mode')
-                            : const Text('Light mode'),
-                        value: notifier.isDark,
-                        onChanged: (value) {
-                          notifier.toogleTheme(value);
-                        },
-                      );
-                    },
+                // Card(
+                //   child: Consumer<ThemeNotifier>(
+                //     builder: (context, notifier, _) {
+                //       return SwitchListTile.adaptive(
+                //         secondary: notifier.isDark
+                //             ? Icon(
+                //                 Icons.dark_mode,
+                //                 color: Colors.amber.shade700,
+                //               )
+                //             : Icon(
+                //                 Icons.light_mode,
+                //                 color: Colors.amber.shade700,
+                //               ),
+                //         title: notifier.isDark
+                //             ? const Text('Dark mode')
+                //             : const Text('Light mode'),
+                //         value: notifier.isDark,
+                //         onChanged: (value) {
+                //           notifier.toogleTheme(value);
+                //         },
+                //       );
+                //     },
+                //   ),
+                // ),
+
+                SizedBox(
+                  height: 200,
+                  width: double.infinity,
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Carousel(
+                      images: _carouselImages,
+                      autoplay: true,
+                      animationDuration: Duration(seconds: 5),
+                      animationCurve: Curves.fastOutSlowIn,
+                      indicatorBgPadding: 7,
+                      dotSize: 5,
+                      boxFit: BoxFit.fill,
+                      onImageTap: (imageNum) {
+                        Navigator.of(context).pushNamed(
+                            ArticleDetailScreen.routeName,
+                            arguments: documents[imageNum]['id']);
+                      },
+                    ),
                   ),
                 ),
+
                 Expanded(
                   child: ListView.separated(
                     separatorBuilder: (context, index) {
