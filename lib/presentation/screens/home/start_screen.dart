@@ -110,31 +110,30 @@ class _StartScreenState extends State<StartScreen>
 
             return Column(
               children: [
-                // Card(
-                //   child: Consumer<ThemeNotifier>(
-                //     builder: (context, notifier, _) {
-                //       return SwitchListTile.adaptive(
-                //         secondary: notifier.isDark
-                //             ? Icon(
-                //                 Icons.dark_mode,
-                //                 color: Colors.amber.shade700,
-                //               )
-                //             : Icon(
-                //                 Icons.light_mode,
-                //                 color: Colors.amber.shade700,
-                //               ),
-                //         title: notifier.isDark
-                //             ? const Text('Dark mode')
-                //             : const Text('Light mode'),
-                //         value: notifier.isDark,
-                //         onChanged: (value) {
-                //           notifier.toogleTheme(value);
-                //         },
-                //       );
-                //     },
-                //   ),
-                // ),
-
+                Card(
+                  child: Consumer<ThemeNotifier>(
+                    builder: (context, notifier, _) {
+                      return SwitchListTile.adaptive(
+                        secondary: notifier.isDark
+                            ? Icon(
+                                Icons.dark_mode,
+                                color: Colors.amber.shade700,
+                              )
+                            : Icon(
+                                Icons.light_mode,
+                                color: Colors.amber.shade700,
+                              ),
+                        title: notifier.isDark
+                            ? const Text('Dark mode')
+                            : const Text('Light mode'),
+                        value: notifier.isDark,
+                        onChanged: (value) {
+                          notifier.toogleTheme(value);
+                        },
+                      );
+                    },
+                  ),
+                ),
                 SizedBox(
                   height: 200,
                   width: double.infinity,
@@ -156,7 +155,6 @@ class _StartScreenState extends State<StartScreen>
                     ),
                   ),
                 ),
-
                 Expanded(
                   child: ListView.separated(
                     separatorBuilder: (context, index) {

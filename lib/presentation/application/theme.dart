@@ -3,22 +3,30 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class MyAppTheme {
   static ThemeData myThemes(bool isDark, BuildContext context) {
-    return ThemeData(
-      primaryColor: isDark ? Colors.black : Colors.white,
-      iconTheme: isDark
-          ? IconThemeData(color: Colors.purple.shade200, opacity: 0.8)
-          : const IconThemeData(color: Colors.red, opacity: 0.8),
-      brightness: isDark ? Brightness.dark : Brightness.light,
-      appBarTheme: AppBarTheme(
-          backgroundColor:
-              isDark ? const Color(0xFF181818) : Colors.deepPurple),
-      colorScheme: isDark
-          ? const ColorScheme.dark(onSecondary: Colors.white)
-          : const ColorScheme.light(onSecondary: Colors.white),
-      floatingActionButtonTheme: const FloatingActionButtonThemeData(
-          backgroundColor: Colors.deepPurpleAccent),
-      scaffoldBackgroundColor: isDark ? Colors.grey.shade900 : Colors.white,
-    );
+    return isDark
+        ? ThemeData.dark()
+        : ThemeData(
+            primaryColor: Colors.white,
+            appBarTheme: AppBarTheme(
+                color: Colors.white,
+                toolbarTextStyle: Theme.of(context)
+                    .textTheme
+                    .apply(
+                      bodyColor: Colors.black,
+                      displayColor: Colors.black,
+                    )
+                    .bodyText2,
+                titleTextStyle: Theme.of(context)
+                    .textTheme
+                    .apply(
+                      bodyColor: Colors.black,
+                      displayColor: Colors.black,
+                    )
+                    .headline6,
+                iconTheme: IconThemeData(
+                  color: Colors.black,
+                )),
+          );
   }
 }
 
