@@ -12,8 +12,11 @@ class HomeAppbar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      //elevation: 0,
-      //backgroundColor: Colors.transparent,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(
+          bottom: Radius.circular(12),
+        ),
+      ),
       flexibleSpace: Container(
         decoration: const BoxDecoration(
           borderRadius: BorderRadius.only(
@@ -22,11 +25,9 @@ class HomeAppbar extends StatelessWidget implements PreferredSizeWidget {
           ),
         ),
       ),
-
       title: Text(
         tabTitle[controller.index],
-        style: TextStyle(
-          //color: Theme.of(context).primaryColor,
+        style: const TextStyle(
           fontWeight: FontWeight.bold,
         ),
       ),

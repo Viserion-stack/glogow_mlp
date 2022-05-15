@@ -80,9 +80,8 @@ class _StartScreenState extends State<StartScreen>
           builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
               return const Center(
-                  child:
-                      ShimmerLoading() //CircularProgressIndicator.adaptive(),
-                  );
+                child: ShimmerLoading(),
+              );
             }
             List<Article> _articles = [];
 
@@ -245,16 +244,18 @@ class ShimmerWidget extends StatelessWidget {
   final double height;
   final ShapeBorder shapeBorder;
 
-  const ShimmerWidget.rectangular(
-      {Key? key, this.width = double.infinity, required this.height})
-      : shapeBorder = const RoundedRectangleBorder(),
+  const ShimmerWidget.rectangular({
+    this.width = double.infinity,
+    required this.height,
+    Key? key,
+  })  : shapeBorder = const RoundedRectangleBorder(),
         super(key: key);
-  const ShimmerWidget.circular(
-      {Key? key,
-      this.width,
-      required this.height,
-      this.shapeBorder = const CircleBorder()})
-      : super(key: key);
+  const ShimmerWidget.circular({
+    this.width,
+    required this.height,
+    this.shapeBorder = const CircleBorder(),
+    Key? key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
