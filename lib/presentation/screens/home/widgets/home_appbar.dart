@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
 
+import '../../../application/app_insets.dart';
+
 class HomeAppbar extends StatelessWidget implements PreferredSizeWidget {
   const HomeAppbar({
     required this.controller,
     required this.tabTitle,
+    required this.scaffoldKey,
     Key? key,
   }) : super(key: key);
+  final GlobalKey<ScaffoldState> scaffoldKey;
   final TabController controller;
   final List<String> tabTitle;
 
@@ -25,6 +29,20 @@ class HomeAppbar extends StatelessWidget implements PreferredSizeWidget {
           ),
         ),
       ),
+      actions: [
+        IconButton(
+          highlightColor: Colors.transparent,
+          splashColor: Colors.transparent,
+          icon: const Icon(
+            Icons.menu,
+          ),
+          iconSize: AppInsets.xxMedium,
+          //color: Colors.black,
+          onPressed: () {
+            scaffoldKey.currentState!.openEndDrawer();
+          },
+        ),
+      ],
       title: Text(
         tabTitle[controller.index],
         style: const TextStyle(
